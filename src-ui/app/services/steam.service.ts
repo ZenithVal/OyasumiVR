@@ -215,17 +215,9 @@ export class SteamService {
       .subscribe();
   }
 
-  private async handleAchievement_CONNECT_HASS() {
-    this.mqttService.clientStatus
-      .pipe(
-        distinctUntilChanged(),
-        debounceTime(1000),
-        filter((status) => status === 'CONNECTED'),
-        switchMap(() => this.getAchievement(SteamAchievements.HASS_CON)),
-        filter((unlocked) => !unlocked),
-        switchMap(() => this.setAchievement(SteamAchievements.HASS_CON, true)),
-        take(1)
-      )
-      .subscribe();
+private async handleAchievement_CONNECT_HASS() {
+  const unlocked = await this.getAchievement(SteamAchievements.HASS_CON);
+  if (!unlocked) {
+    await this.setAchievement(SteamAchievements.HASS_CON, true);
   }
 }
