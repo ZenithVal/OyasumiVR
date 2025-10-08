@@ -1,8 +1,6 @@
 name: 'Development Build'
-on:
-  push:
-    branches:
-      - develop
+on: 
+  workflow_dispatch:
 
 jobs:
   build-dev-release:

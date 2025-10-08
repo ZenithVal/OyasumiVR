@@ -1,8 +1,6 @@
 name: 'Steam Beta Build'
-on:
-  push:
-    branches:
-      - steam-beta
+on: 
+  workflow_dispatch:
 
 jobs:
   build-steam-beta-release:
